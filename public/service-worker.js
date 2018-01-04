@@ -58,7 +58,7 @@ let routers = ['home', 'portfolio', 'about', 'news', 'contact']
 function fetchData(event) {
   let url = event.request.url
   for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
-  caches.match(event.request).then(function (response) {
+  return caches.match(event.request).then(function (response) {
     return response || fetch(event.request);
   })
 }
