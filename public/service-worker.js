@@ -2,23 +2,23 @@
 var doCache = true;
 
 // Name our cache
-var CACHE_NAME = 'ignitech-pwa-v2_3';
+var CACHE_NAME = 'ignitech-pwa-v5';
 
 // Delete old caches that are not our current one!
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys()
-      .then(keyList =>
-        Promise.all(keyList.map(key => {
-          if (!cacheWhitelist.includes(key)) {
-            console.log('Deleting cache: ' + key)
-            return caches.delete(key);
-          }
-        }))
-      )
-  );
-});
+// self.addEventListener('activate', event => {
+//   const cacheWhitelist = [CACHE_NAME];
+//   event.waitUntil(
+//     caches.keys()
+//       .then(keyList =>
+//         Promise.all(keyList.map(key => {
+//           if (!cacheWhitelist.includes(key)) {
+//             console.log('Deleting cache: ' + key)
+//             return caches.delete(key);
+//           }
+//         }))
+//       )
+//   );
+// });
 
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener('install', function (event) {
@@ -30,10 +30,9 @@ self.addEventListener('install', function (event) {
           // This is because webpack hashes it
           const urlsToCache = [
             '/',
+            '/home',
             '/index.html',
             '/app.bundle.js',
-            '/favicon.ico',
-            '/manifest.json',
             '/css/style.css',
             '/font/MuseoSans-100.otf',
             '/font/MuseoSans-300.otf',
@@ -57,9 +56,15 @@ self.addEventListener('install', function (event) {
 // if we have them
 self.addEventListener('fetch', function (event) {
   if (doCache) {
+    console.log('Opening URL: ', event.request.url);
     event.respondWith(
       caches.match(event.request).then(function (response) {
+        console.log('it\'s match')
         return response || fetch(event.request);
+      })
+      .catch(err => {
+        console.log('Error happened: ', err)
+        return caches.match('/img/ignitech1.png')
       })
     );
   }
