@@ -2,7 +2,7 @@
 var doCache = true;
 
 // Name our cache
-var CACHE_NAME = 'ignitech-pwa-v2_2';
+var CACHE_NAME = 'ignitech-pwa-v2_3';
 
 // Delete old caches that are not our current one!
 self.addEventListener('activate', event => {
@@ -32,6 +32,8 @@ self.addEventListener('install', function (event) {
             '/',
             '/index.html',
             '/app.bundle.js',
+            '/favicon.ico',
+            '/manifest.json',
             '/css/style.css',
             '/font/MuseoSans-100.otf',
             '/font/MuseoSans-300.otf',
