@@ -74,11 +74,5 @@ function getData(event) {
 }
 
 self.addEventListener('fetch', function (event) {
-  if (doCache) {
-    let url = event.request.url
-
-    event.respondWith(
-      fetchData(url)
-    );
-  }
+  if (doCache) event.respondWith(fetchData(event))
 });
