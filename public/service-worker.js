@@ -5,20 +5,20 @@ var doCache = true;
 var CACHE_NAME = 'ignitech-pwa-v5';
 
 // Delete old caches that are not our current one!
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys()
-      .then(keyList =>
-        Promise.all(keyList.map(key => {
-          if (!cacheWhitelist.includes(key)) {
-            console.log('Deleting cache: ' + key)
-            return caches.delete(key);
-          }
-        }))
-      )
-  );
-});
+// self.addEventListener('activate', event => {
+//   const cacheWhitelist = [CACHE_NAME];
+//   event.waitUntil(
+//     caches.keys()
+//       .then(keyList =>
+//         Promise.all(keyList.map(key => {
+//           if (!cacheWhitelist.includes(key)) {
+//             console.log('Deleting cache: ' + key)
+//             return caches.delete(key);
+//           }
+//         }))
+//       )
+//   );
+// });
 
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener('install', function (event) {
