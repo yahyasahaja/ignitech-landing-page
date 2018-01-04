@@ -26,8 +26,14 @@ export default class Portfolio extends React.Component {
     
     axios.get('/api/portfolios').then(res => this.setState({
       portfolioData: _.map(res.data.items, (data, i) => {
+        let reg = /<img[^>]+src="http:\/\/([^">]+)/g
+        let imgs = reg.exec(data.content), img
+        if (imgs) 
+          if (imgs.length > 0) img = imgs[0]
+        
+
         return {
-          img: '/img/ignitech1-logo.png',
+          img: img || '/img/ignitech1-logo.png',
           title: data.title,
           link: `/portfolio/${data.id}`,
         }
