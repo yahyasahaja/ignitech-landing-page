@@ -55,6 +55,22 @@ let routers = ['home', 'portfolio', 'about', 'news', 'contact']
 
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
 // if we have them
+function fetchData(url) {
+  if (navigator.onLine) return getData(url)
+  
+  for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
+  return getData(url)
+}
+
+function getData(url) {
+  caches.match(event.request).then(function (response) {
+    return response || fetch(event.request);
+  }).catch(err => {
+    for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
+    throw err
+  })
+}
+
 self.addEventListener('fetch', function (event) {
   if (doCache) {
     let url = event.request.url
@@ -64,10 +80,3 @@ self.addEventListener('fetch', function (event) {
     );
   }
 });
-
-function fetchData(url) {
-  if (navigator.onLine) return getData(url)
-  
-  for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
-  return getData(url)
-}
