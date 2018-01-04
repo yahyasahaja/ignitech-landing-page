@@ -38,7 +38,6 @@ self.addEventListener('install', function (event) {
             '/font/MuseoSans-500.otf',
             '/font/MuseoSans-700.otf',
             '/font/MuseoSans-900.otf',
-            'https://fonts.googleapis.com/icon?family=Material+Icons',
             '/img/background-diagonal.png',
             '/img/ignitech1-logo_glass_shadow.png',
             '/img/ignitech1-logo.png',
