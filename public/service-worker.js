@@ -58,21 +58,25 @@ let routers = ['home', 'portfolio', 'about', 'news', 'contact']
 function fetchData(event) {
   let url = event.request.url
   if (navigator.onLine) return getData(event)
-  
+  console.log(3, event.request.url)
   for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
   return getData(event)
 }
 
 function getData(event) {
   let url = event.request.url
+  console.log(2, event.request.url)
   caches.match(event.request).then(function (response) {
+    console.log(4, event.request.url)
     return response || fetch(event.request);
   }).catch(err => {
+    console.log(5, event.request.url)
     for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
     throw err
   })
 }
 
 self.addEventListener('fetch', function (event) {
+  console.log(1, event.request.url)
   if (doCache) event.respondWith(fetchData(event))
 });
