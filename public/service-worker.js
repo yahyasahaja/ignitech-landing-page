@@ -60,12 +60,14 @@ self.addEventListener('fetch', function (event) {
     let url = event.request.url
 
     event.respondWith(
-      caches.match(event.request).then(function (response) {
-        return response || fetch(event.request);
-      }).catch(err => {
-        for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
-        throw err
-      })
+      fetchData(url)
     );
   }
 });
+
+function fetchData(url) {
+  if (navigator.onLine) return getData(url)
+  
+  for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
+  return getData(url)
+}
