@@ -1,0 +1,26 @@
+.container {
+  button {
+    margin: auto;
+    display: block;
+    background: #579aff;
+    padding: 10px 30px;
+    color: white;
+    border: none;
+    font-size: 12pt;
+    cursor: pointer;
+    margin-top: 30px;
+    box-shadow: 1px 1px 8px 0px rgba(0, 0, 0, 0.25);
+    transition: .2s;
+
+    .icon {
+      font-size: 15pt;
+      margin-right: 10px;
+    }
+  }
+
+  button:active {
+    box-shadow: 1px 3px 8px 0px rgba(0, 0, 0, 0.56);
+    background: #3867ad;
+    transition: 0s;
+  }
+}

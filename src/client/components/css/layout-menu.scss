@@ -1,0 +1,106 @@
+@import '../../css/config.scss';
+
+.container {
+  .desktop-wrapper {
+    width: 200px;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+
+    a {
+      color: $primary-color;
+      text-decoration: none !important;
+    }
+
+    .up-wrapper {
+      display: flex;
+      height: 100%;
+      .left-wrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 50px;
+        padding: 10px;
+        height: 100%;
+  
+        .menu-icon {
+          margin-top: 20px;
+          font-size: 20pt;
+          height: 100px;
+        }
+      }
+  
+      .right-wrapper {
+        border-left: solid $primary-color 1px;
+        display: flex;
+        flex-direction: column;
+        padding: 10px;
+  
+        .logo {
+          width: 100px;
+          margin-top: 20px;
+        }
+      }
+    }
+
+    .down-wrapper {
+      position: absolute;
+      padding-top: 180px;
+      top: 0;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: space-around;
+      flex-direction: column;
+      padding-bottom: 30px;
+
+      .menu-node {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        overflow: hidden;
+        font-size: 11pt;
+        
+        .number {
+          margin-right: 10px;
+          width: 50px;
+          text-align: center;
+          opacity: 1;
+          transition: .2s;
+        }
+
+        .name {
+          opacity: 0;
+          transform: translateX(-200px);
+          transition: 1s;
+        }
+      }
+    }
+
+    .down-wrapper:hover {
+      .menu-node {
+        .name {
+          opacity: 1;
+          transform: translateX(0px);
+          transition: .2s;
+        }
+
+        .number {
+          opacity: 1;
+          transition: .2s;
+        }
+      }
+
+      .menu-node:hover {
+        .name {
+          opacity: 1;
+          transform: translateX(10px);
+          transition: .2s;
+        }
+      }
+    }
+  }
+}

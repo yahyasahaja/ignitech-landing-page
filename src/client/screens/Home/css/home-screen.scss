@@ -1,0 +1,39 @@
+@import '../../../css/config.scss';
+
+.container {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  padding: 100px;
+  position: absolute;
+  overflow: hidden;
+  height: 100%;
+  top: 0;
+  padding-left: 200px;
+  position: absolute;
+
+  .logo {
+    margin-top: 60px;
+    height: 412px;
+  }
+
+  .desc {
+    height: 200px;
+    margin-left: 70px;
+    color: rgb(247, 165, 39);
+    text-shadow: rgba(214, 214, 214, 0.44) 2px 2px 5px;
+    font-weight: 500;
+    
+    .desc1 {
+      font-size: 50pt;
+      margin-top: 140px;
+      display: block;
+      font-weight: 700;
+    }
+
+    .desc2, .desc3 {
+      display: block;
+      font-size: 15pt;
+    }
+  }
+}

@@ -1,0 +1,41 @@
+.container {
+  display: block;
+  margin: 20px 10px;
+  height: 40%;
+  max-width: 220px;
+
+  .img-wrapper {
+    width: 220px;
+    height: 75%;
+    overflow: hidden;
+    border-radius: 10px;
+    border: solid 1px #d0d0d0;
+    box-shadow: 2px 2px 12px 0px #cacaca9e;
+    margin: auto;
+
+    img {
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      width: 100%;
+    }
+  }
+
+  span {
+    display: block;
+    text-align: center;
+    font-size: 14pt;
+    text-transform: capitalize;
+    color: #585b69;
+    margin-top: 15px;
+    transition: .3s;
+  }
+
+  &:hover {
+    span {
+      color: #e77e23;
+      transform: translateY(-5px);
+      transition: .3s;
+    }
+  }
+}

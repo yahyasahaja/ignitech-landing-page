@@ -1,0 +1,29 @@
+.container {
+  display: block;
+  margin: 10px;
+
+  input, textarea {
+    display: block;
+    width: 400px;
+    padding: 7px 15px;
+    font-size: 12pt;
+    background: none;
+    border: solid #c7c7c7 1px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 7px 0px #e6e6e6b8;
+    transition: .3s;
+    color: #5a5a5a;
+
+    &:hover, &:focus {
+      border: solid #a5a5a5 1px;
+      box-shadow: 1px 3px 7px 1px rgba(220, 220, 220, 0.81);
+      transition: .3s;
+    }
+
+    &::placeholder {
+      font-weight: 300;
+      font-family: "museo", "Century Gothic", CenturyGothic, AppleGothic, sans-serif;
+      opacity: .5;
+    }
+  }
+}
