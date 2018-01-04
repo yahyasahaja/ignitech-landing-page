@@ -37,7 +37,7 @@ var app = (0, _express2.default)();
 // @flow
 //MODULES
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 5000;
 
 //CONFIG
 if (process.env.NODE_ENV === 'production') {

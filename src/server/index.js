@@ -14,7 +14,7 @@ import { events, DB_CONNECTED } from './events'
  
 //FIRST_CONFIG
 const app = express()
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 5000
 
 //CONFIG
 if (process.env.NODE_ENV === 'production') {
