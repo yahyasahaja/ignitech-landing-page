@@ -57,10 +57,10 @@ let routers = ['home', 'portfolio', 'about', 'news', 'contact']
 // if we have them
 function fetchData(event) {
   let url = event.request.url
-  if (navigator.onLine) return getData(url)
+  if (navigator.onLine) return getData(event)
   
   for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
-  return getData(url)
+  return getData(event)
 }
 
 function getData(event) {
