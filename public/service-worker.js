@@ -5,20 +5,20 @@ var doCache = true;
 var CACHE_NAME = 'ignitech-pwa-v5';
 
 // Delete old caches that are not our current one!
-// self.addEventListener('activate', event => {
-//   const cacheWhitelist = [CACHE_NAME];
-//   event.waitUntil(
-//     caches.keys()
-//       .then(keyList =>
-//         Promise.all(keyList.map(key => {
-//           if (!cacheWhitelist.includes(key)) {
-//             console.log('Deleting cache: ' + key)
-//             return caches.delete(key);
-//           }
-//         }))
-//       )
-//   );
-// });
+self.addEventListener('activate', event => {
+  const cacheWhitelist = [CACHE_NAME];
+  event.waitUntil(
+    caches.keys()
+      .then(keyList =>
+        Promise.all(keyList.map(key => {
+          if (!cacheWhitelist.includes(key)) {
+            console.log('Deleting cache: ' + key)
+            return caches.delete(key);
+          }
+        }))
+      )
+  );
+});
 
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener('install', function (event) {
@@ -30,7 +30,6 @@ self.addEventListener('install', function (event) {
           // This is because webpack hashes it
           const urlsToCache = [
             '/',
-            '/home',
             '/index.html',
             '/app.bundle.js',
             '/css/style.css',
@@ -52,19 +51,20 @@ self.addEventListener('install', function (event) {
   }
 });
 
+let routers = ['home', 'portfolio', 'about', 'news', 'contact']
+
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
 // if we have them
 self.addEventListener('fetch', function (event) {
   if (doCache) {
-    console.log('Opening URL: ', event.request.url);
+    let url = event.requst.url
+
     event.respondWith(
       caches.match(event.request).then(function (response) {
-        console.log('it\'s match')
         return response || fetch(event.request);
-      })
-      .catch(err => {
-        console.log('Error happened: ', err)
-        return caches.match('/img/ignitech1.png')
+      }).catch(err => {
+        for (let i in routers) if (routers[i].indexOf(url) != -1) return caches.match('/')
+        throw err
       })
     );
   }
