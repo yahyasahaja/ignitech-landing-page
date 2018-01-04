@@ -57,7 +57,7 @@ let routers = ['home', 'portfolio', 'about', 'news', 'contact']
 // if we have them
 self.addEventListener('fetch', function (event) {
   if (doCache) {
-    let url = event.requst.url
+    let url = event.request.url
 
     event.respondWith(
       caches.match(event.request).then(function (response) {
