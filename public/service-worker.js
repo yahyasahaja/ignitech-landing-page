@@ -63,7 +63,7 @@ self.addEventListener('fetch', function (event) {
       caches.match(event.request).then(function (response) {
         return response || fetch(event.request);
       }).catch(err => {
-        for (let i in routers) if (routers[i].indexOf(url) != -1) return caches.match('/')
+        for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
         throw err
       })
     );
