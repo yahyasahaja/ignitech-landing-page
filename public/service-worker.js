@@ -2,54 +2,57 @@
 var doCache = true;
 
 // Name our cache
-var CACHE_NAME = 'ignitech-pwa-v5';
+var CACHE_NAME = 'ignitech-pwa-8';
 
 // Delete old caches that are not our current one!
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME];
-  event.waitUntil(
-    caches.keys()
-      .then(keyList =>
-        Promise.all(keyList.map(key => {
-          if (!cacheWhitelist.includes(key)) {
-            console.log('Deleting cache: ' + key)
-            return caches.delete(key);
-          }
-        }))
-      )
-  );
+  event.waitUntil(checkAndDeleteOlderCaches())
 });
+ 
+function checkAndDeleteOlderCaches() {
+  const cacheWhitelist = [CACHE_NAME];
+  caches.keys()
+    .then(keyList =>
+      Promise.all(keyList.map(key => {
+        if (!cacheWhitelist.includes(key)) {
+          console.log('Deleting cache: ' + key)
+          return caches.delete(key);
+        }
+      }))
+    )
+}
 
 // The first time the user starts up the PWA, 'install' is triggered.
 self.addEventListener('install', function (event) {
-  if (doCache) {
-    event.waitUntil(
-      caches.open(CACHE_NAME)
-        .then(function (cache) {
-          // Get the assets manifest so we can see what our js file is named
-          // This is because webpack hashes it
-          const urlsToCache = [
-            '/',
-            '/index.html',
-            '/app.bundle.js',
-            '/css/style.css',
-            '/font/MuseoSans-100.otf',
-            '/font/MuseoSans-300.otf',
-            '/font/MuseoSans-500.otf',
-            '/font/MuseoSans-700.otf',
-            '/font/MuseoSans-900.otf',
-            '/img/background-diagonal.png',
-            '/img/ignitech1-logo_glass_shadow.png',
-            '/img/ignitech1-logo.png',
-            '/img/ignitech1.png'
-          ]
-
-          cache.addAll(urlsToCache)
-          console.log('cached');
-        })
-    );
-  }
+  if (doCache) event.waitUntil(registerCaches());
 });
+
+function registerCaches() {
+  checkAndDeleteOlderCaches()
+  caches.open(CACHE_NAME)
+  .then(function (cache) {
+    // Get the assets manifest so we can see what our js file is named
+    // This is because webpack hashes it
+    const urlsToCache = [
+      '/',
+      '/index.html',
+      '/app.bundle.js',
+      '/css/style.css',
+      '/font/MuseoSans-100.otf',
+      '/font/MuseoSans-300.otf',
+      '/font/MuseoSans-500.otf',
+      '/font/MuseoSans-700.otf',
+      '/font/MuseoSans-900.otf',
+      '/img/background-diagonal.png',
+      '/img/ignitech1-logo_glass_shadow.png',
+      '/img/ignitech1-logo.png',
+      '/img/ignitech1.png' 
+    ]
+
+    cache.addAll(urlsToCache)
+    console.log('cached');
+  })
+}
 
 let routers = ['/home', '/portfolio', '/about', '/news', '/contact'] 
 
@@ -58,7 +61,7 @@ let routers = ['/home', '/portfolio', '/about', '/news', '/contact']
 function fetchData(event) {
   let path = new URL(event.request.url).pathname
 
-  if (path.indexOf('/api') !== 0)
+  if (path.indexOf('/api') !== 0) 
   for (let i in routers) if (path.indexOf(routers[i]) === 0 ) return caches.match('/')
   
   return caches.match(event.request).then(function (response) {
