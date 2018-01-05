@@ -51,14 +51,18 @@ self.addEventListener('install', function (event) {
   }
 });
 
-let routers = ['home', 'portfolio', 'about', 'news', 'contact']
+let routers = ['/home', '/portfolio', '/about', '/news', '/contact'] 
 
 // When the webpage goes to fetch files, we intercept that request and serve up the matching files
 // if we have them
 function fetchData(event) {
-  let url = event.request.url
-  for (let i in routers) if (url.indexOf(routers[i]) != -1) return caches.match('/')
+  let path = new URL(event.request.url).pathname
+
+  if (path.indexOf('/api') !== 0)
+  for (let i in routers) if (path.indexOf(routers[i]) === 0 ) return caches.match('/')
+  
   return caches.match(event.request).then(function (response) {
+    //response can be undefined if no cache found
     return response || fetch(event.request);
   })
 }
