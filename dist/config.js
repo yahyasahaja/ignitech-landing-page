@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 var LOG_MODE = exports.LOG_MODE = 'dev';
 var GOOGLE_BLOGGER_ENDPOINT = exports.GOOGLE_BLOGGER_ENDPOINT = 'https://www.googleapis.com/blogger/v3/blogs';
 var PORTFOLIO_BLOG_ID = exports.PORTFOLIO_BLOG_ID = '994425938474186801';
+var NEWS_BLOG_ID = exports.NEWS_BLOG_ID = '7924216791597339834';
 var GOOGLE_API_KEY = exports.GOOGLE_API_KEY = 'AIzaSyCui9a5TFXQQ1HP5gPWQBVKyebTP6jm5z0';
 var DATABASE = exports.DATABASE = {
   DATABASE_NAME: 'test',

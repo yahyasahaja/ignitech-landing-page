@@ -2,64 +2,55 @@
 import React from 'react'
 import { Transition, TransitionGroup } from 'react-transition-group'
 import _ from 'lodash'
+import axios from 'axios'
 
 //STYLES
 import styles from './css/portfolio.scss'
 
 //COMPONENTS
 import Button from '../../components/BlueButton'
-import PortfolioCard from '../../components/PortfolioCard'
+import NewsCard from '../../components/PortfolioCard'
 
 let PORTFOLIO_DATA = [
   {
     img: '/img/ignitech1-logo.png',
-    title: 'Awesome News',
-    link: 'awesomeNews'
-  },
-  {
-    img: '/img/ignitech1-logo.png',
-    title: 'Awesome News',
-    link: 'awesomeNews'
-  },
-  {
-    img: '/img/ignitech1-logo.png',
-    title: 'Awesome News',
-    link: 'awesomeNews'
-  },
-  {
-    img: '/img/ignitech1-logo.png',
-    title: 'Awesome News',
-    link: 'awesomeNews'
-  },
-  {
-    img: '/img/ignitech1-logo.png',
-    title: 'Awesome News',
-    link: 'awesomeNews'
-  },
-  {
-    img: '/img/ignitech1-logo.png',
-    title: 'Awesome News',
-    link: 'awesomeNews'
+    title: 'Awesome Project 1',
+    link: '/news/project1'
   },
 ]
 
 //COMPONENT
-export default class Portfolio extends React.Component {
+export default class News extends React.Component {
   componentDidMount() {
     setTimeout(() => this.setState({mounted: true}), 300)
+    
+    axios.get('/api/news').then(res => this.setState({
+      newsData: _.map(res.data.items, (data, i) => {
+        let reg = /\ssrc=(?:(?:'([^']*)')|(?:"([^"]*)")|([^\s]*))/i
+        let imgs = reg.exec(data.content), img
+        if (imgs) if (imgs.length > 0) img = imgs[1] || imgs[2] || imgs[3]
+        
+        return {
+          img: img || '/img/ignitech1-logo.png',
+          title: data.title,
+          link: `/news/${data.id}`,
+        }
+      })
+    }))
   }
 
   state = {
     mounted: false,
+    newsData: null,
   }
 
-  renderPortfolioCard(state, scrollState) {
-    return _.map(PORTFOLIO_DATA, (data, i) => 
+  renderNewsCard(state, scrollState) {
+    return _.map(this.state.newsData, (data, i) => 
       <Transition 
         in={this.props.in}
         timeout={50 * i + 200}
       >
-      {state => <PortfolioCard 
+      {state => <NewsCard 
         key={i} {...data} 
         className={`${state} float-flat-${scrollState} `}
       />}
@@ -89,7 +80,7 @@ export default class Portfolio extends React.Component {
         {
         state =>
         <div className={`${styles.wrapper} ${state} float-flat-${scrollState} `}>
-          {this.renderPortfolioCard(state, scrollState)}
+          {this.renderNewsCard(state, scrollState)}
         </div>
         }
         </Transition>
