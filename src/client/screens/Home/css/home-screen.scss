@@ -36,6 +36,8 @@
     margin-left: 70px;
     color: inherit;
     font-weight: 500;
+    text-shadow: rgba(214, 214, 214, 0.44) 2px 2px 5px;
+    color: rgb(247, 165, 39);
     
     @media only screen and (max-width: 800px) {
       margin-left: 0;
@@ -46,8 +48,6 @@
       margin-top: 140px;
       display: block;
       font-weight: 800;
-      color: rgb(247, 165, 39);
-      border-bottom: dashed #47bc9b 1px;
       margin-bottom: 10px;
 
       @media only screen and (max-width: 800px) {
@@ -58,7 +58,7 @@
     .desc2, .desc3 {
       display: block;
       font-size: 15pt;
-      font-weight: 300;
+      font-weight: 500;
     }
   }
 }
