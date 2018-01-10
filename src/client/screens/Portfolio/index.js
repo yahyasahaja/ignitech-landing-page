@@ -5,6 +5,7 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import ScrollSwipe from '../../libs/ScrollSwipe'
 import { connect } from 'react-redux'
 import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
+import MediaQuery from 'react-responsive'
 
 //STYLES
 import styles from './css/index.scss'
@@ -30,16 +31,14 @@ export default class Portfolio extends React.Component {
     selected: 0,
     scrollState: 1,
     scrolling: false,
-    iframeObject: null,
   }
 
   render() {
     return (
       <div className={styles.container}>
-				<Layout />
-				{/* <Route path="/portfolio/lists" component={} /> */}
+        <Layout {...this.props} />
+				{/* <Route path="/projects/lists" component={} /> */}
 				<Route path="/portfolio/:id" component={Content}/>
-        {this.state.iframeObject}
       </div>
     )
   }

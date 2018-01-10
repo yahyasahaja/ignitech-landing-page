@@ -2,7 +2,7 @@
 var doCache = true;
 
 // Name our cache
-var CACHE_NAME = 'ignitech-pwa-9';
+var CACHE_NAME = 'ignitech-pwa-10';
 
 // Delete old caches that are not our current one!
 self.addEventListener('activate', event => {

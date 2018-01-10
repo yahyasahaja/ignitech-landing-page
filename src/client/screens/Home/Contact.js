@@ -46,7 +46,7 @@ export default class Contact extends React.Component {
           in={this.props.in}
           timeout={100}
         >
-        { state => <h1 className={`${styles.title} ${state} float-${scrollState} `}>Contact Us</h1> }
+        { state => <h1 className={`${styles.title} ${state} float-${scrollState} `}>Contact</h1> }
         </Transition>
         <Transition 
           in={this.props.in}
@@ -94,7 +94,7 @@ export default class Contact extends React.Component {
         }
         </Transition>
         </form>
-        <span className={styles.footer}>Copyright &copy; 2017 Ignitech. All rights reserved</span>
+        <span className={styles.footer}>Copyright &copy; 2017 Yahya Sahaja. All rights reserved</span>
       </div>
     )
   }

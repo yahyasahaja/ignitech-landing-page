@@ -3,6 +3,7 @@ import React from 'react'
 import { Transition, TransitionGroup } from 'react-transition-group'
 import _ from 'lodash'
 import axios from 'axios'
+import MediaQuery from 'react-responsive'
 
 //STYLES
 import styles from './css/content.scss'
@@ -33,10 +34,10 @@ export default class Content extends React.Component {
     return (
       <div className={styles.container}>
         <div className={styles.share}>
-            <span>SHARE</span>
-            <a href={`https://www.facebook.com/sharer.php?u=${link}`} className={styles.fb} target="_blank"><li className="fa fa-facebook"></li></a>
-            <a href={`https://twitter.com/intent/tweet?url=${link}`}  className={styles.tw} target="_blank"><li className="fa fa-twitter"></li></a>
-            <a href={`https://plus.google.com/share?url=${link}`}  className={styles.gp} target="_blank"><li className="fa fa-google-plus"></li></a>
+          <MediaQuery query="(min-device-width: 700px)"><span>SHARE</span></MediaQuery>
+          <a href={`https://www.facebook.com/sharer.php?u=${link}`} className={styles.fb} target="_blank"><li className="fa fa-facebook"></li></a>
+          <a href={`https://twitter.com/intent/tweet?url=${link}`}  className={styles.tw} target="_blank"><li className="fa fa-twitter"></li></a>
+          <a href={`https://plus.google.com/share?url=${link}`}  className={styles.gp} target="_blank"><li className="fa fa-google-plus"></li></a>
         </div>
 
         <div className={styles.wrapper}> 

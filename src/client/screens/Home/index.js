@@ -156,7 +156,7 @@ class HomePages extends React.Component {
   render() {
     return (
       <div className={styles.container}>
-				<Layout />
+				<Layout {...this.props} />
       	{this.renderContent()}
       </div>
     )

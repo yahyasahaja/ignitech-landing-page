@@ -87,7 +87,7 @@ export default class Portfolio extends React.Component {
         <Transition 
           in={this.props.in}
           timeout={300}
-        >
+        > 
         {
         state =>
         <div className={`${styles['button-wrapper']} ${state} float-flat-${scrollState} `}>
@@ -98,7 +98,7 @@ export default class Portfolio extends React.Component {
       </div>
     )
   }
-
+ 
   render() {
     return (
       <Transition 

@@ -1,5 +1,10 @@
 @import '../../../css/config.scss';
 
+@keyframes spinning {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 .container {
   width: 100%;
   justify-content: center;
@@ -12,28 +17,48 @@
   padding-left: 200px;
   position: absolute;
 
+  @media only screen and (max-width: 800px) {
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+  }
+
   .logo {
-    margin-top: 60px;
     height: 412px;
+    
+    @media only screen and (max-width: 800px) {
+      height: 300px;
+    }
   }
 
   .desc {
     height: 200px;
     margin-left: 70px;
-    color: rgb(247, 165, 39);
-    text-shadow: rgba(214, 214, 214, 0.44) 2px 2px 5px;
+    color: inherit;
     font-weight: 500;
     
+    @media only screen and (max-width: 800px) {
+      margin-left: 0;
+    }
+
     .desc1 {
       font-size: 50pt;
       margin-top: 140px;
       display: block;
-      font-weight: 700;
+      font-weight: 800;
+      color: rgb(247, 165, 39);
+      border-bottom: dashed #47bc9b 1px;
+      margin-bottom: 10px;
+
+      @media only screen and (max-width: 800px) {
+        margin-top: 0;
+      }
     }
 
     .desc2, .desc3 {
       display: block;
       font-size: 15pt;
+      font-weight: 300;
     }
   }
 }

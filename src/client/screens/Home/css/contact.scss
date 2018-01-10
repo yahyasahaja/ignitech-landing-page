@@ -8,10 +8,15 @@
   position: absolute;
   padding-top: 85px;
 
+  @media only screen and (max-width: 800px) {
+    padding: 20px;
+  }
+
   .title {
     text-align: center;
     font-size: 30pt;
     height: 15%;
+    margin-top: 50px;
   }
   
   .wrapper {
@@ -19,12 +24,16 @@
     width: 100%;
     justify-content: center;
     margin: auto;
-    margin-top: 30px;
+    margin-top: 50px;
     flex-wrap: wrap;
     align-items: center;
     height: 70%;
     overflow: hidden;
-    max-width: 750px;
+    max-width: 400px;
+
+    @media only screen and (max-width: 800px) {
+      width: 80%;
+    }
   }
 
   .button-wrapper {
